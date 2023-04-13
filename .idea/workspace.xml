@@ -9,43 +9,18 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8b51075-55f6-4aeb-83d7-7cc7fec484d4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../BitFit/app/src/main/java/com/example/bitfit/AppDatabase.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BitFit/app/src/main/java/com/example/bitfit/DetailActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BitFit/app/src/main/java/com/example/bitfit/FoodAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BitFit/app/src/main/java/com/example/bitfit/FoodDao.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BitFit/app/src/main/java/com/example/bitfit/FoodEntity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BitFit/app/src/main/java/com/example/bitfit/MyApplication.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BitFit/app/src/main/res/layout/detail_activity.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BitFit/app/src/main/res/layout/food_items.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CPFitBit2/app/src/main/java/com/example/cpfitbit2/AppDatabase.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CPFitBit2/app/src/main/java/com/example/cpfitbit2/AveragesFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CPFitBit2/app/src/main/java/com/example/cpfitbit2/DetailActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CPFitBit2/app/src/main/java/com/example/cpfitbit2/FitBitDao.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CPFitBit2/app/src/main/java/com/example/cpfitbit2/FitBitEntity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CPFitBit2/app/src/main/java/com/example/cpfitbit2/FoodAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CPFitBit2/app/src/main/java/com/example/cpfitbit2/FoodFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CPFitBit2/app/src/main/java/com/example/cpfitbit2/MainActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CPFitBit2/app/src/main/java/com/example/cpfitbit2/MyApplication.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CPFitBit2/app/src/main/res/drawable-v24/ic_baseline_apps_24.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CPFitBit2/app/src/main/res/drawable-v24/ic_baseline_line_axis_24.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CPFitBit2/app/src/main/res/drawable-v24/ic_launcher_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CPFitBit2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CPFitBit2/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CPFitBit2/app/src/main/res/layout/detail_activity.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CPFitBit2/app/src/main/res/layout/fragment_averages.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CPFitBit2/app/src/main/res/layout/fragment_records.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CPFitBit2/app/src/main/res/layout/recycle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CPFitBit2/app/src/main/res/menu/menu_bottom_navigation.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlixsterPart2/app/src/main/java/com/example/flixsterpart2/DetailActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlixsterPart2/app/src/main/java/com/example/flixsterpart2/Movie.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlixsterPart2/app/src/main/java/com/example/flixsterpart2/MovieFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlixsterPart2/app/src/main/java/com/example/flixsterpart2/MovieRecyclerViewAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlixsterPart2/app/src/main/res/layout/activity_detail.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlixsterPart2/app/src/main/res/layout/fragment_movie.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlixsterPart2/app/src/main/res/layout/fragment_movie_list.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NewYorkTimesBestSellers" beforeDir="false" afterPath="$PROJECT_DIR$/../NewYorkTimesBestSellers" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../and102-lab4-starter" beforeDir="false" afterPath="$PROJECT_DIR$/../and102-lab4-starter" afterDir="false" />
+    <list default="true" id="baa695c0-f9c0-4236-8058-7f5f00dd4852" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/navEditor.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,10 +34,9 @@
     </projectState>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="2OJoQxjQ2Uxknu6WLMwdgb92pzK" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2OO1geEBT3520N2y0mazI4Ex4xX" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -137,11 +111,11 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d8b51075-55f6-4aeb-83d7-7cc7fec484d4" name="Changes" comment="" />
-      <created>1681288033539</created>
+      <changelist id="baa695c0-f9c0-4236-8058-7f5f00dd4852" name="Changes" comment="" />
+      <created>1681416935725</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1681288033539</updated>
+      <updated>1681416935725</updated>
     </task>
     <servers />
   </component>
