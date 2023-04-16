@@ -1,6 +1,6 @@
 package com.example.mealmate
 
-import android.app.appsearch.SearchResult
+
 import androidx.annotation.Keep
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -19,4 +19,6 @@ data class SearchResult (
     val id: String?,
     @SerialName("title")
     val title: String?,
+    @SerialName("image")
+    val poster: String?
 ) : java.io.Serializable

@@ -20,12 +20,14 @@ fun createJson() = Json {
     useAlternativeNames = false
 }
 
-const val API_KEY = "3315e5304bb34417bd8b8f00d0b92dd8"
+const val API_KEY = ""
 private const val TAG = "SearchResultActivity/"
 class SearchResultActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySearchResultBinding
     private lateinit var searchResultsAdapter: SearchResultsAdapter
+    private lateinit var rvPopularMovie: RecyclerView
+    private var searchResultList = mutableListOf<SearchResult>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,14 +37,19 @@ class SearchResultActivity : AppCompatActivity() {
         val searchText = intent.getStringExtra("searchText")
 
 
-        val searchResults = searchText?.let { searchRecipes(it) }
+        //val searchResults = searchText?.let { searchRecipes(it) }
+        val searchResults=searchRecipes(searchText)
 
-        //searchResultsAdapter = SearchResultsAdapter(searchResults)
-        searchResultsAdapter = searchResults?.let { SearchResultsAdapter(it) }!!
-        binding.searchResultsRecyclerView.adapter = searchResultsAdapter
-        binding.searchResultsRecyclerView.layoutManager = LinearLayoutManager(this)
+        //searchResultsAdapter = SearchResultsAdapter(this, searchResults)
+        rvPopularMovie=findViewById<RecyclerView>(R.id.search_result_recycler_view)
+        searchResultsAdapter=SearchResultsAdapter(this, searchResults)
+        rvPopularMovie.adapter = searchResultsAdapter
+        rvPopularMovie.layoutManager = LinearLayoutManager(this).also {
+            val dividerItemDecoration = DividerItemDecoration(this, it.orientation)
+            rvPopularMovie.addItemDecoration(dividerItemDecoration)
+        }
     }
-    private fun searchRecipes(searchText: String): List<SearchResult> {
+    private fun searchRecipes(searchText: String?): List<SearchResult> {
         val client = AsyncHttpClient()
 
         var RECIPE_SEARCH_URL = "https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=$searchText"
@@ -51,7 +58,7 @@ class SearchResultActivity : AppCompatActivity() {
         requestParams.put("query", searchText)
         requestParams.put("apiKey", API_KEY)
 
-        val searchResultList = mutableListOf<SearchResult>()
+
 
         client.get(RECIPE_SEARCH_URL, requestParams, object : JsonHttpResponseHandler() {
             override fun onSuccess(statusCode: Int, headers: Headers, json: JSON) {
@@ -62,7 +69,7 @@ class SearchResultActivity : AppCompatActivity() {
                         json.jsonObject.toString()
                     )
                     parsedJson.result?.let { list ->
-                        popularMovieList.addAll(list)
+                        searchResultList.addAll(list)
                     }
                     searchResultsAdapter.notifyDataSetChanged()
 
@@ -93,3 +100,5 @@ class SearchResultActivity : AppCompatActivity() {
 
 
 }
+
+
