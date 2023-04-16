@@ -19,7 +19,7 @@ fun createJson() = Json {
     ignoreUnknownKeys = true
     useAlternativeNames = false
 }
-
+//input your own key for now
 const val API_KEY = ""
 private const val TAG = "SearchResultActivity/"
 class SearchResultActivity : AppCompatActivity() {
