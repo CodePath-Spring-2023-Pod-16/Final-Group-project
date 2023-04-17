@@ -21,7 +21,7 @@
         android:id="@+id/navigation_notifications"
         android:name="com.example.mealmate.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/navigation_user_page"
