@@ -9,11 +9,11 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import com.example.mealmate.SearchResultActivity
-import com.example.mealmate.databinding.FragmentNotificationsBinding
+import com.example.mealmate.databinding.FragmentSearchBinding
 
 class NotificationsFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    private var _binding: FragmentSearchBinding? = null
     private lateinit var searchButton: Button
     private lateinit var searchEditText: EditText
 
@@ -26,7 +26,7 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         searchButton = binding.searchButton
