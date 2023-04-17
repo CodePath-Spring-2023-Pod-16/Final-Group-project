@@ -16,7 +16,8 @@ import com.bumptech.glide.request.RequestOptions
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 
 
-
+const val RECIPE_ID = "RECIPE_ID"
+const val RECIPE_IMAGE = "RECIPE_IMAGE"
 class SearchResultsAdapter(private val context: Context, private val searchResults: List<SearchResult>) :
     RecyclerView.Adapter<SearchResultsAdapter.ViewHolder>() {
 
@@ -31,7 +32,7 @@ class SearchResultsAdapter(private val context: Context, private val searchResul
 
     override fun getItemCount() = searchResults.size
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         private var id: TextView
         private var name: TextView
         private var poster: ImageView
@@ -53,6 +54,15 @@ class SearchResultsAdapter(private val context: Context, private val searchResul
                 .apply(RequestOptions.bitmapTransform(RoundedCornersTransformation(radius,margin)))
                 .into(poster)
             // code to bind other search result properties to the view
+        }
+        override fun onClick(p0: View?) {
+            val movie = searchResults[absoluteAdapterPosition]
+            val intent = Intent(context, RecipeDetailsActivity::class.java)
+            intent.putExtra(RECIPE_ID, movie.id)
+            intent.putExtra(RECIPE_IMAGE, movie.poster)
+
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(context as Activity, (poster as View?)!!, "poster")
+            context.startActivity(intent, options.toBundle())
         }
     }
 }
