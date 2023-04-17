@@ -22,4 +22,11 @@
         android:name="com.example.mealmate.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_user_page"
+        android:name="com.example.mealmate.ui.UserProfile.UserProfilePage"
+        android:label="Profile"
+        tools:layout="@layout/fragment_user_profile_page" />
+
 </navigation>
