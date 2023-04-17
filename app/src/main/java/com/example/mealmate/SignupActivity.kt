@@ -20,8 +20,8 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
-        auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance().reference
+        //auth = FirebaseAuth.getInstance()
+        //database = FirebaseDatabase.getInstance().reference
 
         findViewById<Button>(R.id.btn_signup).setOnClickListener {
             val name = findViewById<EditText>(R.id.et_name).text.toString()
