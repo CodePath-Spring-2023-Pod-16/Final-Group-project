@@ -1,4 +1,4 @@
-package com.example.mealmate.ui.notifications
+package com.example.mealmate.ui.search
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import com.example.mealmate.SearchResultActivity
 import com.example.mealmate.databinding.FragmentSearchBinding
 
-class NotificationsFragment : Fragment() {
+class SearchFragment : Fragment() {
 
     private var _binding: FragmentSearchBinding? = null
     private lateinit var searchButton: Button
