@@ -19,8 +19,8 @@ fun createJson() = Json {
     ignoreUnknownKeys = true
     useAlternativeNames = false
 }
-//input your own key for now
-const val API_KEY = ""
+
+const val API_KEY = "3315e5304bb34417bd8b8f00d0b92dd8"
 private const val TAG = "SearchResultActivity/"
 class SearchResultActivity : AppCompatActivity() {
 
@@ -76,14 +76,6 @@ class SearchResultActivity : AppCompatActivity() {
                 } catch (e: JSONException) {
                     Log.e(TAG, "Exception: $e")
                 }
-                /*
-                val searchResultsJsonArray = json?.getJSONObject("results")?.getJSONArray("searchResults")
-                val searchResults = Gson().fromJson(searchResultsJsonArray.toString(), Array<SearchResult>::class.java)
-                searchResultList.addAll(searchResults)
-
-                 */
-
-
             }
             override fun onFailure(
                 statusCode: Int,

@@ -3,6 +3,7 @@ package com.example.mealmate
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -16,7 +17,8 @@ import com.bumptech.glide.request.RequestOptions
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 
 
-
+const val RECIPE_ID = "RECIPE_ID"
+const val RECIPE_IMAGE = "RECIPE_IMAGE"
 class SearchResultsAdapter(private val context: Context, private val searchResults: List<SearchResult>) :
     RecyclerView.Adapter<SearchResultsAdapter.ViewHolder>() {
 
@@ -31,12 +33,13 @@ class SearchResultsAdapter(private val context: Context, private val searchResul
 
     override fun getItemCount() = searchResults.size
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         private var id: TextView
         private var name: TextView
         private var poster: ImageView
 
         init {
+            itemView.setOnClickListener(this)
             id = itemView.findViewById(R.id.recipe_id)
             name = itemView.findViewById(R.id.recipe_name)
             poster=itemView.findViewById(R.id.recipe_image)
@@ -53,6 +56,15 @@ class SearchResultsAdapter(private val context: Context, private val searchResul
                 .apply(RequestOptions.bitmapTransform(RoundedCornersTransformation(radius,margin)))
                 .into(poster)
             // code to bind other search result properties to the view
+        }
+        override fun onClick(p0: View?) {
+            val recipe = searchResults[absoluteAdapterPosition]
+            val intent = Intent(context, RecipeDetailsActivity::class.java)
+            Log.i(recipe.id, "Successfully fetched articles: $recipe.id")
+            intent.putExtra(RECIPE_ID, recipe.id)
+            intent.putExtra(RECIPE_IMAGE, recipe.poster)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(context as Activity, (poster as View?)!!, "poster")
+            context.startActivity(intent, options.toBundle())
         }
     }
 }
