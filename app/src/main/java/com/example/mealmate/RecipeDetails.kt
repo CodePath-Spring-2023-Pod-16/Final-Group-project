@@ -4,12 +4,11 @@ import androidx.annotation.Keep
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-
 @Keep
 @Serializable
 data class RecipeDetailsResponse(
     @SerialName("steps")
-    val result: List<SearchResult>?
+    val result: List<RecipeDetails>?
 )
 @Keep
 @Serializable
@@ -19,7 +18,7 @@ data class RecipeDetails (
     @SerialName("step")
     val stepInfo: String?,
     @SerialName("ingredients")
-    val ingredients: List<Ingredients>?
+    val ingredients: List<String>?
 ) : java.io.Serializable
 
 @Keep
