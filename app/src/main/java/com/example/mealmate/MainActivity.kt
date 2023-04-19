@@ -8,6 +8,11 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.mealmate.databinding.ActivityMainBinding
+<<<<<<< Updated upstream
+=======
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
+>>>>>>> Stashed changes
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +20,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+<<<<<<< Updated upstream
+=======
+        FirebaseApp.initializeApp(this)
+>>>>>>> Stashed changes
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -22,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
+<<<<<<< Updated upstream
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
@@ -31,5 +41,27 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+=======
+
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user == null) {
+            // Launch the LoginActivity
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        } else {
+            // Passing each menu ID as a set of Ids because each
+            // menu should be considered as top level destinations.
+            val appBarConfiguration = AppBarConfiguration(
+                setOf(
+                    R.id.navigation_home,
+                    R.id.navigation_search,
+                    R.id.navigation_favorites,
+                    R.id.navigation_user_page
+                )
+            )
+            setupActionBarWithNavController(navController, appBarConfiguration)
+            navView.setupWithNavController(navController)
+        }
+>>>>>>> Stashed changes
     }
 }
