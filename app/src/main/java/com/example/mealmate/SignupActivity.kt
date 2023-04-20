@@ -33,17 +33,23 @@ class SignupActivity : AppCompatActivity() {
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             val userId = auth.currentUser!!.uid
-                            val user = User(name, email)
+                            val user = User(name, email, password)
 
                             database.child("users").child(userId).setValue(user)
                                 .addOnCompleteListener { task ->
                                     if (task.isSuccessful) {
                                         Toast.makeText(this, "Registration successful.", Toast.LENGTH_SHORT).show()
                                         val intent = Intent(this, MainActivity::class.java)
+                                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
                                         startActivity(intent)
                                         finish()
                                     } else {
-                                        Toast.makeText(this, "Registration failed.", Toast.LENGTH_SHORT).show()
+                                        val exception = task.exception
+                                        if (exception != null) {
+                                            Toast.makeText(this, "Registration failed: " + exception.message, Toast.LENGTH_SHORT).show()
+                                        } else {
+                                            Toast.makeText(this, "Registration failed.", Toast.LENGTH_SHORT).show()
+                                        }
                                     }
                                 }
                         } else {
