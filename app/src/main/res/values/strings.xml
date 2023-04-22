@@ -13,5 +13,6 @@
     <string name="profile">Profile</string>
     <string name="search">Search</string>
     <string name="favorites">Favorites</string>
+    <string name="sort_by">Sort By:</string>
 
 </resources>

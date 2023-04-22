@@ -17,6 +17,7 @@ class SearchFragment : Fragment() {
     private lateinit var searchButton: Button
     private lateinit var searchEditText: EditText
 
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
