@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".SearchResultActivity">
+
     <ImageView
         android:id="@+id/recipe_image"
         android:layout_width="414dp"
@@ -19,16 +20,15 @@
 
     <TextView
         android:id="@+id/recipe_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_margin="5dp"
-        android:textSize="30sp"
+        android:layout_width="190dp"
+        android:layout_height="38dp"
         android:text="title"
         android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
         android:textColor="@color/black"
+        android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipe_image" />
 
@@ -40,11 +40,19 @@
         android:text="release_date"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_name"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/recipe_name" />
 
-
+    <Button
+        android:id="@+id/button"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="27dp"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/recipe_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_image" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
