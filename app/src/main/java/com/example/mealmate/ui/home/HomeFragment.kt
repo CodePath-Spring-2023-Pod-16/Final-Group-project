@@ -43,24 +43,41 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         //val recyclerView: RecyclerView =binding.recyclerView
-        updateView("")
+        updateView("", "")
         val root: View = binding.root
         val cuisineOptions = arrayOf("","Italian", "Indian", "American", "French", "Chinese", "Japanese", "Thai")
-        val spinner: Spinner = binding.spinnerCuisine
+        val sortByOptions = arrayOf("","meta-score", "popularity", "healthiness", "price", "random", "time", "protein")
+        val spinnerCuisine: Spinner = binding.spinnerCuisine
+        val spinnerSorting: Spinner = binding.spinnerSorting
 
         val arrayAdapter=ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_dropdown_item, cuisineOptions)
-        spinner.adapter=arrayAdapter
-        var type=""
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        spinnerCuisine.adapter=arrayAdapter
+        val sortAdapter=ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_dropdown_item, sortByOptions)
+        spinnerSorting.adapter=sortAdapter
+        var cuisine=""
+        var sortEntries=""
+        spinnerSorting.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                type=cuisineOptions[position]
-                updateView(type)
+                sortEntries=sortByOptions[position]
+                updateView(cuisine, sortEntries)
                 //Toast.makeText(activity, "selected + " + cuisineOptions[position], Toast.LENGTH_SHORT).show()
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 searchResultList.clear()
                 searchResultsAdapter.notifyDataSetChanged()
-                updateView("")
+                updateView("", "")
+            }
+        }
+        spinnerCuisine.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                cuisine=cuisineOptions[position]
+                updateView(cuisine, sortEntries)
+                //Toast.makeText(activity, "selected + " + cuisineOptions[position], Toast.LENGTH_SHORT).show()
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                searchResultList.clear()
+                searchResultsAdapter.notifyDataSetChanged()
+                updateView("", "")
             }
         }
         return root
@@ -85,9 +102,9 @@ class HomeFragment : Fragment() {
     }
 
      */
-    private fun updateView(searchText: String?) {
+    private fun updateView(searchText: String?, sortByText: String?) {
         val recyclerView: RecyclerView = binding.feedRecyclerView
-        searchRecipes(searchText) { results ->
+        searchRecipes(searchText, sortByText) { results ->
             searchResultList.clear()
             searchResultList.addAll(results)
             searchResultsAdapter.notifyDataSetChanged()
@@ -99,10 +116,10 @@ class HomeFragment : Fragment() {
             recyclerView.addItemDecoration(dividerItemDecoration)
         }
     }
-    private fun searchRecipes(searchText: String?, callback: (List<SearchResult>) -> Unit) {
+    private fun searchRecipes(searchText: String?, sortByText: String?, callback: (List<SearchResult>) -> Unit) {
         val client = AsyncHttpClient()
 
-        var RECIPE_SEARCH_URL = "https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&cuisine=$searchText"
+        var RECIPE_SEARCH_URL = "https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&cuisine=$searchText&sort=$sortByText"
 
         val requestParams = RequestParams()
         requestParams.put("query", searchText)
