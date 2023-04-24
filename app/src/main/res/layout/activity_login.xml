@@ -3,40 +3,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <ImageView
+        android:id="@+id/iv_app_logo"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/app_logo_1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp" />
+
+
     <EditText
         android:id="@+id/et_email"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/iv_app_logo"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:padding="16dp"
-        android:layout_marginTop="32dp" />
+        android:padding="16dp" />
 
     <EditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/et_email"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:hint="Password"
         android:inputType="textPassword"
-        android:padding="16dp"
-        android:layout_below="@+id/et_email" />
+        android:padding="16dp" />
 
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:layout_marginTop="32dp"
-        android:layout_below="@+id/et_password" />
+        android:layout_height="50dp"
+        android:layout_below="@+id/et_password"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Login" />
 
     <Button
         android:id="@+id/tv_signup"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/btn_login"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="67dp"
         android:text="Don't have an account? Sign up"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:layout_marginTop="32dp"
-        android:layout_below="@+id/btn_login" />
+        />
 
 </RelativeLayout>

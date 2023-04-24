@@ -27,6 +27,8 @@ class FavoriteRecipeAdapter(private val recipes: MutableList<FavoriteRecipeModel
                     // Notify the adapter that the recipe has been removed from the list
                     notifyItemRemoved(position)
                     // TODO: Remove the recipe from the user's list of favorite recipes
+
+
                 }
             }
         }
