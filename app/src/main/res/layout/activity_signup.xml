@@ -42,9 +42,9 @@
         android:id="@+id/tv_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Already have an account? Login"
+        android:layout_below="@+id/btn_signup"
+        android:layout_marginTop="30dp"
         android:gravity="center"
-        android:textSize="16sp"
-        android:layout_marginTop="32dp"
-        android:layout_below="@+id/btn_signup"/>
+        android:text="Already have an account? Login"
+        android:textSize="16sp" />
 </RelativeLayout>
