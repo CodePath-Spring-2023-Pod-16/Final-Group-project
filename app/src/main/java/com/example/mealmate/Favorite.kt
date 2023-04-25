@@ -1,14 +1,24 @@
 package com.example.mealmate
+import androidx.annotation.Keep
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-
-class Favorite : Fragment() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is favorite Fragment"
-    }
-    val text: LiveData<String> = _text
-}
+@Keep
+@Serializable
+data class Favorite (
+    @SerialName("id")
+    val recipeId: String?,
+    @SerialName("title")
+    val title: String?,
+    @SerialName("image")
+    val recipeImageUrl: String?,
+    @SerialName("maxReadyTime")
+    val prepTime: Int
+) : java.io.Serializable
+//
+//@Keep
+//@Serializable
+//data class FavoriteResponse(
+//    @SerialName("results")
+//    val result: List<SearchResult>?
+//)

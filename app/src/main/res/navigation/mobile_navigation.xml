@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_favorites"
-        android:name="com.example.mealmate.Favorite"
+        android:name="com.example.mealmate.FavoriteFragment"
         android:label="Favorites"
         tools:layout="@layout/fragment_favorite" />
 

@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mealmate.R
-import com.example.mealmate.FavoriteRecipeAdapter
+//import com.example.mealmate.FavoriteRecipeAdapter
 import com.example.mealmate.FavoriteViewModel
 
 

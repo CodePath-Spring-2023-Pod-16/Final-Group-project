@@ -2,72 +2,122 @@ package com.example.mealmate
 
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.RequestParams
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
+import com.example.mealmate.*
+import com.example.mealmate.databinding.FragmentFavoriteBinding
+import com.example.mealmate.databinding.FragmentHomeBinding
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import okhttp3.Headers
 import org.json.JSONException
+import org.json.JSONObject
+import java.net.URL
+
 private const val TAG = "FavoriteActivity/"
+class FavoriteFragment : Fragment() {
 
-class FavoriteActivity : AppCompatActivity() {
-    private lateinit var favoriteRecipeAdapter: FavoriteRecipeAdapter
+    private var _binding: FragmentFavoriteBinding? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_favorite)
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+    private lateinit var searchResultsAdapter: SearchResultsAdapter
+    private var searchResultList = mutableListOf<String>()
 
-        // Get the recipeIds list from the intent extra
-        val recipeIds = intent.getStringArrayListExtra("recipeIds") ?: arrayListOf()
+    override fun onCreateView (
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val favoriteModel =
+            ViewModelProvider(this).get(FavoriteViewModel::class.java)
 
-        // TODO: Load the favorite recipes with the recipeIds list
-        val favoriteRecipes = loadFavoriteRecipes(recipeIds)
+        _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
+        //val recyclerView: RecyclerView =binding.recyclerView
+        
+        val root: View = binding.root
 
-        // Set up the RecyclerView and its adapter
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        favoriteRecipeAdapter = FavoriteRecipeAdapter(MainActivity.recipeIds)
-        recyclerView.adapter = favoriteRecipeAdapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        return root
     }
 
-    // TODO: Implement the loadFavoriteRecipes function to load the favorite recipes with the recipeIds list
-    private fun loadFavoriteRecipes(recipeIds: List<String>): List<FavoriteViewModel> {
-        val favoriteRecipes = mutableListOf<FavoriteViewModel>()
+    private fun updateView() {
+        val recyclerView: RecyclerView = binding.feedRecyclerView
 
-        // For each recipeId in the list, fetch the recipe information using the Spoonacular API
-        recipeIds.forEach { recipeId ->
-            val client = AsyncHttpClient()
-            val RECIPE_URL = "https://api.spoonacular.com/recipes/$recipeId/information?apiKey=${API_KEY}"
-            val requestParams = RequestParams()
-            requestParams.put("apiKey", API_KEY)
-
-            client.get(RECIPE_URL, requestParams, object : JsonHttpResponseHandler() {
-                override fun onSuccess(statusCode: Int, headers: Headers, json: JSON) {
-                    try {
-                        // Parse the recipe information JSON and add the recipe to the list of favorite recipes
-                        val recipe = createJson().decodeFromString(FavoriteViewModel.serializer(), json.jsonObject.toString())
-                        favoriteRecipes.add(recipe)
-
-                        // Notify the adapter that the data has changed
-                        favoriteRecipeAdapter.notifyDataSetChanged()
-                    } catch (e: JSONException) {
-                        Log.e(TAG, "Exception: $e")
-                    }
-                }
-
-                override fun onFailure(
-                    statusCode: Int,
-                    headers: Headers?,
-                    response: String?,
-                    throwable: Throwable?
-                ) {
-                    Log.e(TAG, "Failed to fetch recipe: $response")
-                }
-            })
+        convertIDS(MainActivity.recipeIds) { searchResults ->
+            searchResultsAdapter = SearchResultsAdapter(requireActivity(), searchResults)
+            recyclerView.adapter = searchResultsAdapter
+            recyclerView.layoutManager = LinearLayoutManager(requireActivity()).also {
+                val dividerItemDecoration = DividerItemDecoration(requireActivity(), it.orientation)
+                recyclerView.addItemDecoration(dividerItemDecoration)
+            }
         }
+    }
 
-        return favoriteRecipes
+    private fun convertIDS(ids: MutableList<String>?, callback: (List<SearchResult>) -> Unit) {
+        val client = AsyncHttpClient()
+        val searchResults = mutableListOf<SearchResult>()
+
+        if (ids != null) {
+            for (id in ids) {
+                val url = "https://api.spoonacular.com/recipes/$id/information?apiKey=$API_KEY"
+                val requestParams = RequestParams()
+                requestParams.put("apiKey", API_KEY)
+
+                    client.get(url, requestParams, object : JsonHttpResponseHandler() {
+            override fun onSuccess(statusCode: Int, headers: Headers, json: JSON) {
+                Log.i(TAG, "Successfully fetched recipes: $json")
+                try {
+                    val parsedJson = createJson().decodeFromString(
+                        SearchNewsResponse.serializer(),
+                        json.jsonObject.toString()
+                    )
+
+                    parsedJson.result?.let { list ->
+                        for (resultJson in list) {
+                            val searchResult = SearchResult(
+                                id = resultJson.id.toString(),
+                                title = resultJson.title.toString(),
+                                poster = resultJson.poster.toString()
+                            )
+                            searchResults.add(searchResult)
+                        }
+                    }
+                    callback(searchResults)
+
+                } catch (e: JSONException) {
+                    Log.e(TAG, "Exception: $e")
+                }
+            }
+
+                    override fun onFailure(
+                        statusCode: Int,
+                        headers: Headers?,
+                        response: String?,
+                        throwable: Throwable?
+                    ) {
+                        Log.e(TAG, "Failed to fetch recipe information for id $id")
+                    }
+                })
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
