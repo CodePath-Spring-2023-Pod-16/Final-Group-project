@@ -53,7 +53,6 @@
                 android:text="Instruction:"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:maxLines="6"
                 android:ellipsize="end"
                 android:fontFamily="serif"/>
 

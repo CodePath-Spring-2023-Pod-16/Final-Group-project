@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
@@ -32,6 +33,8 @@ class SearchFragment : Fragment() {
 
         searchButton = binding.searchButton
         searchEditText = binding.editText
+
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
 
         searchButton.setOnClickListener {
             val searchText = searchEditText.text.toString()
