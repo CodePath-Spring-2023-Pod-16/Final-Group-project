@@ -48,14 +48,15 @@ class FavoriteFragment : Fragment() {
 
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         //val recyclerView: RecyclerView =binding.recyclerView
-        
+
         val root: View = binding.root
+    updateView()
 
         return root
     }
 
     private fun updateView() {
-        val recyclerView: RecyclerView = binding.feedRecyclerView
+        val recyclerView: RecyclerView = binding.favoriteRecipesRecyclerView
 
         convertIDS(MainActivity.recipeIds) { searchResults ->
             searchResultsAdapter = SearchResultsAdapter(requireActivity(), searchResults)
@@ -65,6 +66,8 @@ class FavoriteFragment : Fragment() {
                 recyclerView.addItemDecoration(dividerItemDecoration)
             }
         }
+
+        //searchResultsAdapter.notifyDataSetChanged()
     }
 
     private fun convertIDS(ids: MutableList<String>?, callback: (List<SearchResult>) -> Unit) {
@@ -73,6 +76,7 @@ class FavoriteFragment : Fragment() {
 
         if (ids != null) {
             for (id in ids) {
+                System.out.println(id)
                 val url = "https://api.spoonacular.com/recipes/$id/information?apiKey=$API_KEY"
                 val requestParams = RequestParams()
                 requestParams.put("apiKey", API_KEY)
