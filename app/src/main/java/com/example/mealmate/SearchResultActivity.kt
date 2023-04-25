@@ -20,7 +20,7 @@ fun createJson() = Json {
     useAlternativeNames = false
 }
 
-const val API_KEY = ""
+const val API_KEY = "c4bb37b967824d4081d0d1e5191d4dd7"
 private const val TAG = "SearchResultActivity/"
 class SearchResultActivity : AppCompatActivity() {
 
@@ -52,7 +52,7 @@ class SearchResultActivity : AppCompatActivity() {
     private fun searchRecipes(searchText: String?): List<SearchResult> {
         val client = AsyncHttpClient()
 
-        var RECIPE_SEARCH_URL = "https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=$searchText"
+        var RECIPE_SEARCH_URL = "https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=$searchText&number=50"
 
         val requestParams = RequestParams()
         requestParams.put("query", searchText)

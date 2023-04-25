@@ -119,7 +119,7 @@ class HomeFragment : Fragment() {
     private fun searchRecipes(searchText: String?, sortByText: String?, callback: (List<SearchResult>) -> Unit) {
         val client = AsyncHttpClient()
 
-        var RECIPE_SEARCH_URL = "https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&cuisine=$searchText&sort=$sortByText"
+        var RECIPE_SEARCH_URL = "https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&cuisine=$searchText&sort=$sortByText&number=50"
 
         val requestParams = RequestParams()
         requestParams.put("query", searchText)
