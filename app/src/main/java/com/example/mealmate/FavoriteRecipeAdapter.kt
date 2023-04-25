@@ -1,5 +1,6 @@
-package com.example.mealmate.ui
+package com.example.mealmate
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +9,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.mealmate.R
+import com.codepath.asynchttpclient.AsyncHttpClient
+import com.codepath.asynchttpclient.RequestParams
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
+import com.example.mealmate.MainActivity.Companion.recipeIds
+import okhttp3.Headers
+import org.json.JSONException
 
-class FavoriteRecipeAdapter(private val recipes: MutableList<FavoriteRecipeModel>) :
+private const val TAG = "FavoriteActivity/"
+
+class FavoriteRecipeAdapter(private val recipes: MutableList<String>) :
     RecyclerView.Adapter<FavoriteRecipeAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val recipeNameTextView: TextView = itemView.findViewById(R.id.recipeNameTv)
@@ -27,6 +35,7 @@ class FavoriteRecipeAdapter(private val recipes: MutableList<FavoriteRecipeModel
                     // Notify the adapter that the recipe has been removed from the list
                     notifyItemRemoved(position)
                     // TODO: Remove the recipe from the user's list of favorite recipes
+                    MainActivity.recipeIds.removeAt(position)
                 }
             }
         }
@@ -41,14 +50,41 @@ class FavoriteRecipeAdapter(private val recipes: MutableList<FavoriteRecipeModel
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val pos = recipes[position] // Get the data model based on position
+        val recipeId = recipeIds[position]
         val recipeTitle = holder.recipeNameTextView
-        recipeTitle.text = pos.title
         val cookTime = holder.prepTime
-        cookTime.text = pos.prepTime.toString()
-        Glide.with(holder.itemView)
-            .load(pos.recipeImageUrl)
-            .into(holder.recipeImageView)
+
+        val client = AsyncHttpClient()
+
+        val RECIPE_URL = "https://api.spoonacular.com/recipes/$recipeId/information?apiKey=${API_KEY}"
+        val requestParams = RequestParams()
+        requestParams.put("apiKey", API_KEY)
+        client.get(RECIPE_URL, object : JsonHttpResponseHandler() {
+            override fun onSuccess(statusCode: Int, headers: Headers, json: JSON) {
+                Log.i(TAG, "Successfully fetched recipe: $json")
+                try {
+                    val recipe = createJson().decodeFromString(FavoriteViewModel.serializer(), json.jsonObject.toString())
+                    recipeTitle.text = recipe.title
+                    cookTime.text = recipe.prepTime.toString()
+
+                    Glide.with(holder.itemView)
+                        .load(recipe.recipeImageUrl)
+                        .into(holder.recipeImageView)
+
+                } catch (e: JSONException) {
+                    Log.e(TAG, "Exception: $e")
+                }
+            }
+
+            override fun onFailure(
+                statusCode: Int,
+                headers: Headers?,
+                response: String?,
+                throwable: Throwable?
+            ) {
+                Log.e(TAG, "Failed to fetch recipe: $response")
+            }
+        })
     }
 
     override fun getItemCount(): Int {

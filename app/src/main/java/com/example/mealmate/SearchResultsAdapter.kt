@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.app.ActivityOptionsCompat
@@ -37,12 +38,19 @@ class SearchResultsAdapter(private val context: Context, private val searchResul
         private var id: TextView
         private var name: TextView
         private var poster: ImageView
-
+        private var addButton: Button
         init {
             itemView.setOnClickListener(this)
             id = itemView.findViewById(R.id.recipe_id)
             name = itemView.findViewById(R.id.recipe_name)
             poster=itemView.findViewById(R.id.recipe_image)
+
+            addButton = itemView.findViewById(R.id.button)
+            addButton.setOnClickListener {
+                val recipeId = id.text.toString()
+                MainActivity.recipeIds.add(recipeId)
+                Log.i("Recipe ID added", "Recipe ID $recipeId added to recipeIds: ${MainActivity.recipeIds}")
+            }
         }
 
         fun bind(searchResult: SearchResult) {

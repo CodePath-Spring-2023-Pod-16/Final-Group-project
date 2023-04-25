@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchResultActivity">
+    tools:context=".SearchResultActivity"
+    android:background="@color/ghost_white">
 
     <TextView
         android:id="@+id/search_result_text"
@@ -24,6 +25,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_result_text" />
+        app:layout_constraintTop_toBottomOf="@+id/search_result_text"
+        tools:listitem="@layout/activity_recipe_instruction_details"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,5 +14,7 @@
     <string name="search">Search</string>
     <string name="favorites">Favorites</string>
     <string name="sort_by">Sort By:</string>
+    <string name="favor">Favor</string>
+    <string name="cuisine_type">Cuisine Type</string>
 
 </resources>

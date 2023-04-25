@@ -19,9 +19,9 @@
 
     <fragment
         android:id="@+id/navigation_favorites"
-        android:name="com.example.mealmate.ui.search.SearchFragment"
+        android:name="com.example.mealmate.Favorite"
         android:label="Favorites"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_favorite" />
 
     <fragment
         android:id="@+id/navigation_user_page"

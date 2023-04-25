@@ -15,6 +15,10 @@ import com.google.firebase.auth.FirebaseAuth
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    // Define companion object to hold recipe IDs
+    companion object {
+        var recipeIds = mutableListOf<String>()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         val user = FirebaseAuth.getInstance().currentUser
+
         if (user == null) {
             // Launch the LoginActivity
             val intent = Intent(this, LoginActivity::class.java)
@@ -55,5 +60,6 @@ class MainActivity : AppCompatActivity() {
             setupActionBarWithNavController(navController, appBarConfiguration)
             navView.setupWithNavController(navController)
         }
+
     }
 }
