@@ -1,5 +1,6 @@
 package com.example.mealmate.ui.UserProfile
 
+import android.content.Intent.getIntent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,12 +15,13 @@ import com.example.mealmate.ui.FavoriteRecipeModel
 
 
 class UserProfilePage : Fragment() {
-    private var userName: String? = "Marry Wells" // TODO get the user name from the login page
     private var favoriteRecipes: List<FavoriteRecipeModel>? = null // TODO Variable to store the user's list of favorite recipes, get the recipes from HOME feeds
+    private var userName: String? = "Marry Wells" // TODO get the user name from the login page
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // TODO: Retrieve the user's list of favorite recipes from the database or from whatever we storing them
+
     }
 
     override fun onCreateView(
@@ -29,6 +31,7 @@ class UserProfilePage : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_user_profile_page, container, false)  // Inflate the layout for this fragment
         val userNameTextView = view.findViewById<TextView>(R.id.userNameTextView)
+       // get the name
         userNameTextView.text = userName // set the user name to whatever name provide and display it
         val recyclerView = view.findViewById<RecyclerView>(R.id.favoriteRecipesRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(activity)
@@ -47,4 +50,6 @@ class UserProfilePage : Fragment() {
             return UserProfilePage()
         }
     }
+
+
 }

@@ -21,6 +21,7 @@ class SignupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signup)
 
         auth = FirebaseAuth.getInstance()
+
         database = FirebaseDatabase.getInstance().reference
 
         findViewById<Button>(R.id.btn_signup).setOnClickListener {
